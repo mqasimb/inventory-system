@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="903.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Region layoutX="458.0" layoutY="71.0" prefHeight="328.0" prefWidth="410.0" style="-fx-border-color: black;" />
+      <Button layoutX="562.0" layoutY="356.0" mnemonicParsing="false" text="Modify" />
+      <Text layoutX="68.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory Management System" />
+      <Text layoutX="489.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Products" />
+      <Text layoutX="66.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parts" />
+      <TableView layoutX="477.0" layoutY="130.0" prefHeight="200.0" prefWidth="372.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="Part ID" />
+            <TableColumn prefWidth="75.0" text="Part Name" />
+            <TableColumn prefWidth="100.0" text="Inventory Level" />
+            <TableColumn prefWidth="120.0" text="Price/Cost per Unit" />
+         </columns>
+      </TableView>
+      <TableView layoutX="47.0" layoutY="130.0" prefHeight="200.0" prefWidth="372.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="Part ID" />
+            <TableColumn prefWidth="75.0" text="Part Name" />
+            <TableColumn prefWidth="100.0" text="Inventory Level" />
+            <TableColumn prefWidth="120.0" text="Price/Cost per Unit" />
+         </columns>
+      </TableView>
+      <TextField layoutX="699.0" layoutY="90.0" />
+      <TextField layoutX="260.0" layoutY="90.0" />
+      <Button layoutX="500.0" layoutY="356.0" mnemonicParsing="false" text="Add" />
+      <Button layoutX="637.0" layoutY="356.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="628.0" layoutY="90.0" mnemonicParsing="false" text="Search" />
+      <Button layoutX="360.0" layoutY="355.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="281.0" layoutY="355.0" mnemonicParsing="false" text="Modify" />
+      <Button layoutX="233.0" layoutY="355.0" mnemonicParsing="false" text="Add" />
+      <Button layoutX="191.0" layoutY="90.0" mnemonicParsing="false" text="Search" />
+      <Region layoutX="28.0" layoutY="71.0" prefHeight="328.0" prefWidth="410.0" style="-fx-border-color: black;" />
+   </children>
+</Pane>
