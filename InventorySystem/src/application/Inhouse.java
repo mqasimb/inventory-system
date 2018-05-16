@@ -15,5 +15,4 @@ public class Inhouse extends Part {
 	public int getMachineID() {
 		return this.machineID;
 	}
-
 }
