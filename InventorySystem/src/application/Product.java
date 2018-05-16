@@ -52,15 +52,15 @@ public class Product {
 	public int getMax() {
 		return this.max;
 	}
-	public void addAssociatedPart(Part abc) {
-		
+	public void addAssociatedPart(Part part) {
+		this.associatedParts.add(part);
 	}
-	public boolean removeAssociatedPart(int part) {
-		return true;
+	public boolean removeAssociatedPart(int index) {
+		return this.associatedParts.remove(index) != null;
 	}
-//	public Part lookupAssociatedPart(int part) {
-//		return Part;
-//	}
+	public Part lookupAssociatedPart(int index) {
+		return this.associatedParts.get(index);
+	}
 	public void setProductID(int productID) {
 		this.productID = productID;
 	}
