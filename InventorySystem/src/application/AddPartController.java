@@ -1,8 +1,10 @@
 package application;
 
 import java.io.IOException;
+import java.util.Random;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -13,16 +15,33 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class AddPartController {
-	public Button saveButton, cancelButton;
-	public TextField idInput, nameInput, inventoryInput, priceInput, maxInput,
+	@FXML private Button saveButton, cancelButton;
+	@FXML private TextField idInput, nameInput, inventoryInput, priceInput, maxInput,
 	minInput, machineIDInput;
-	public Label machineIDLabel;
+	@FXML private Label machineIDLabel;
 	
 	public void savePart() {
 		if(machineIDLabel.getText() == "Company Name") {
-			new Outsourced(0, null, 0, 0, 0, 0, null);
+			Random rand = new Random();
+			int id = rand.nextInt(50);
+			new Outsourced(id, 
+					nameInput.getText(), 
+					Double.parseDouble(priceInput.getText()),
+					Integer.parseInt(inventoryInput.getText()), 
+					Integer.parseInt(minInput.getText()),
+					Integer.parseInt(maxInput.getText()),
+					machineIDInput.getText());
+		} else{
+			Random rand = new Random();
+			int id = rand.nextInt(50);
+			new Inhouse(id, 
+					nameInput.getText(), 
+					Double.parseDouble(priceInput.getText()),
+					Integer.parseInt(inventoryInput.getText()), 
+					Integer.parseInt(minInput.getText()),
+					Integer.parseInt(maxInput.getText()),
+					Integer.parseInt(machineIDInput.getText()));
 		}
-		new Inhouse(10, nameInput.getText(), 0, 0, 0, 0, 0);
 	}
 	
 	public void outsourceClicked() {

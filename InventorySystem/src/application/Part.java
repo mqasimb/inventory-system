@@ -53,4 +53,13 @@ public abstract class Part {
 	public int getPartID() {
 		return this.partID;
 	}
+
+	@Override
+	public String toString() {
+		return "Part [partID=" + partID + ", name=" + name + ", price=" + price + ", inStock=" + inStock + ", min="
+				+ min + ", max=" + max + ", getName()=" + getName() + ", getPrice()=" + getPrice() + ", getInStock()="
+				+ getInStock() + ", getMin()=" + getMin() + ", getMax()=" + getMax() + ", getPartID()=" + getPartID()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
 }

@@ -2,14 +2,17 @@ package application;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Inventory {
 	
-	private ArrayList<Product> Products;
-	private ArrayList<Part> allParts;
+	private ObservableList<Product> Products;
+	private ObservableList<Part> allParts;
 	
 	public Inventory() {
-		this.Products = new ArrayList<Product>();
-		this.allParts = new ArrayList<Part>();
+		this.Products = FXCollections.observableArrayList();
+		this.allParts = FXCollections.observableArrayList();
 	}
 	
 	public void addProduct(Product product) {
@@ -35,5 +38,11 @@ public class Inventory {
 	}
 	public void updatePart(int index, Part part) {
 		allParts.set(index, part);
+	}
+	public ObservableList<Part> getAllParts() {
+		return this.allParts;
+	}
+	public ObservableList<Product> getAllProducts() {
+		return this.Products;
 	}
 }
