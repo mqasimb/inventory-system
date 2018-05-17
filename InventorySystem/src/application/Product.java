@@ -58,6 +58,12 @@ public class Product {
 	public boolean removeAssociatedPart(int index) {
 		return this.associatedParts.remove(index) != null;
 	}
+	public void removeAssociatedPart(Part part) {
+		this.associatedParts.remove(part);
+	}
+	public ObservableList<Part> getParts() {
+		return this.associatedParts;
+	}
 	public Part lookupAssociatedPart(int index) {
 		return this.associatedParts.get(index);
 	}

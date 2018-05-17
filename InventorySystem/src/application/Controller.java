@@ -90,9 +90,19 @@ public class Controller {
 		window.show();
 	}
 	
-	public void modifyProduct() {
-
-		
+	public void modifyProduct(ActionEvent event) throws IOException {
+		if(productsTableView.getSelectionModel().getSelectedItem() != null) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("modifyProduct.fxml"));
+			Parent tableViewParent = loader.load();
+			Scene tableViewScene = new Scene(tableViewParent);
+			
+			ModifyProductController controller  = loader.getController();
+			controller.initData(productsTableView.getSelectionModel().getSelectedItem());
+			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+			window.setScene(tableViewScene);
+			window.show();
+		}
 	}
 
 	public void deleteProduct() {
