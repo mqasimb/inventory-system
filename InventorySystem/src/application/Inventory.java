@@ -37,6 +37,9 @@ public class Inventory {
 	public Part lookupPart(int index) {
 		return allParts.get(index);
 	}
+	public int getPartIndex(Part part) {
+		return allParts.indexOf(part);
+	}
 	public void updatePart(int index, Part part) {
 		allParts.set(index, part);
 	}

@@ -23,7 +23,7 @@ public class ModifyPartController {
 	private Part previousPart;
 	
 	public void savePart(ActionEvent event) throws IOException {
-		int index = Main.inventory.getAllParts().indexOf(previousPart);
+		int index = Main.inventory.getPartIndex(previousPart);
 		if(index >= -1) {
 			if(machineIDLabel.getText() == "Company Name") {
 				Main.inventory.updatePart(index,

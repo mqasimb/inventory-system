@@ -2,6 +2,8 @@ package application;
 
 import java.io.IOException;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,20 +13,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-//import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class Controller {
 	@FXML private Button searchPartButton, addPartButton, modifyPartButton, deletePartButton,
-	searchProductButton, addProductButton, modifyProductButton, deleteProductButton;
+	searchProductButton, addProductButton, modifyProductButton, deleteProductButton, cancelSearchPartButton;
 	@FXML private TextField searchPartInput, searchProductInput;
 	@FXML private TableView<Part> partsTableView;
 	@FXML private TableColumn<Part, Integer> partIDColumn;
 	@FXML private TableColumn<Part, String> partNameColumn;
 	@FXML private TableColumn<Part, Integer> partInventoryColumn;
 	@FXML private TableColumn<Part, Double> partCostColumn;
+	
 	@FXML private TableView<Product> productsTableView;
 	@FXML private TableColumn<Product, Integer> productIDColumn;
 	@FXML private TableColumn<Product, String> productNameColumn;
@@ -56,12 +58,28 @@ public class Controller {
 
 	public void deletePart() {
 		Part selectedPart = partsTableView.getSelectionModel().getSelectedItem();
-		System.out.println(selectedPart);
 		Main.inventory.deletePart(selectedPart);
 		
 	}
 	public void searchPart() {
-
+		//Open a new screen
+		//Add a cancel search button
+		String searchString = searchPartInput.getText();
+		ObservableList<Part> filteredList = FXCollections.observableArrayList();
+		for(int i=0; i<Main.inventory.getAllParts().size(); i++) {
+			if(searchString.toLowerCase().equals(Main.inventory.lookupPart(i).getName().toLowerCase())) {
+				filteredList.add(Main.inventory.lookupPart(i));
+			}
+		}
+		partsTableView.setItems(filteredList);
+		cancelSearchPartButton.setVisible(true);
+		cancelSearchPartButton.setDisable(false);
+	}
+	public void cancelPartSearch() {
+		searchPartInput.clear();
+		cancelSearchPartButton.setDisable(true);
+		cancelSearchPartButton.setVisible(false);
+		partsTableView.setItems(Main.inventory.getAllParts());
 	}
 	
 	public void addProduct() {
@@ -74,7 +92,6 @@ public class Controller {
 
 	public void deleteProduct() {
 		Product selectedProduct = productsTableView.getSelectionModel().getSelectedItem();
-		System.out.println(selectedProduct);
 		Main.inventory.removeProduct(selectedProduct);
 	}
 	public void searchProduct() {
@@ -86,5 +103,12 @@ public class Controller {
 		partInventoryColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("inStock"));
 		partCostColumn.setCellValueFactory(new PropertyValueFactory<Part, Double>("price"));
 		partsTableView.setItems(Main.inventory.getAllParts());
+		
+		
+		productIDColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("productID"));
+		productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		productInventoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("inStock"));
+		productCostColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
+		productsTableView.setItems(Main.inventory.getAllProducts());
 	}
 }
