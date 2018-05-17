@@ -31,17 +31,18 @@
             <TableColumn fx:id="partCostColumn" prefWidth="103.0" text="Price per Unit" />
         </columns>
       </TableView>
-      <TableView fx:id="partsSearchTableView" layoutX="563.0" layoutY="50.0" prefHeight="200.0" prefWidth="354.0">
+      <TableView fx:id="productPartTableView" layoutX="563.0" layoutY="50.0" prefHeight="200.0" prefWidth="354.0">
          <columns>
-            <TableColumn fx:id="partSearchIDColumn" prefWidth="75.0" text="Part ID" />
-            <TableColumn fx:id="partSearchNameColumn" prefWidth="75.0" text="Part Name" />
-            <TableColumn fx:id="partSearchInventoryColumn" prefWidth="100.0" text="Inventory Level" />
-            <TableColumn fx:id="partSearchCostColumn" prefWidth="103.0" text="Price per Unit" />
+            <TableColumn fx:id="productPartIDColumn" prefWidth="75.0" text="Part ID" />
+            <TableColumn fx:id="productPartNameColumn" prefWidth="75.0" text="Part Name" />
+            <TableColumn fx:id="productPartInventoryColumn" prefWidth="100.0" text="Inventory Level" />
+            <TableColumn fx:id="productPartCostColumn" prefWidth="103.0" text="Price per Unit" />
          </columns>
       </TableView>
-      <TextField layoutX="740.0" layoutY="14.0" />
-      <Button fx:id="searchButton" layoutX="653.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchProduct" text="Search" />
-      <Button fx:id="deleteButton" layoutX="814.0" layoutY="497.0" mnemonicParsing="false" onAction="#deleteProduct" text="Delete" />
-      <Button fx:id="addButton" layoutX="814.0" layoutY="260.0" mnemonicParsing="false" onAction="#addProduct" text="Add" />
+      <TextField fx:id="searchPartInput" layoutX="740.0" layoutY="14.0" />
+      <Button fx:id="searchButton" layoutX="653.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchPart" text="Search" />
+      <Button fx:id="deleteButton" layoutX="814.0" layoutY="497.0" mnemonicParsing="false" onAction="#deletePart" text="Delete" />
+      <Button fx:id="addButton" layoutX="814.0" layoutY="260.0" mnemonicParsing="false" onAction="#addPart" text="Add" />
+      <Button fx:id="cancelSearchPartButton" disable="true" layoutX="591.0" layoutY="14.0" mnemonicParsing="false" onAction="#cancelPartSearch" text="Cancel" visible="false" />
    </children>
 </Pane>
