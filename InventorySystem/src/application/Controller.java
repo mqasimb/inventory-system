@@ -40,21 +40,23 @@ public class Controller {
 	}
 	
 	public void modifyPart(ActionEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("modifyPart.fxml"));
-		Parent tableViewParent = loader.load();
-		Scene tableViewScene = new Scene(tableViewParent);
-		
-		ModifyPartController controller  = loader.getController();
-		controller.initData(partsTableView.getSelectionModel().getSelectedItem())
-		;
-		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		window.setScene(tableViewScene);
-		window.show();
+		if(partsTableView.getSelectionModel().getSelectedItem() != null) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("modifyPart.fxml"));
+			Parent tableViewParent = loader.load();
+			Scene tableViewScene = new Scene(tableViewParent);
+			
+			ModifyPartController controller  = loader.getController();
+			controller.initData(partsTableView.getSelectionModel().getSelectedItem());
+			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+			window.setScene(tableViewScene);
+			window.show();
+		}
 	}
 
 	public void deletePart() {
 		Part selectedPart = partsTableView.getSelectionModel().getSelectedItem();
+		System.out.println(selectedPart);
 		Main.inventory.deletePart(selectedPart);
 		
 	}

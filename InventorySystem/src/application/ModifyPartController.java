@@ -1,8 +1,6 @@
 package application;
 
 import java.io.IOException;
-import java.util.Random;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,33 +22,34 @@ public class ModifyPartController {
 	
 	private Part previousPart;
 	
-	public void savePart() {
-		if(machineIDLabel.getText() == "Company Name") {
-			Random rand = new Random();
-			int id = rand.nextInt(50);
-			new Outsourced(id, 
-					nameInput.getText(), 
-					Double.parseDouble(priceInput.getText()),
-					Integer.parseInt(inventoryInput.getText()), 
-					Integer.parseInt(minInput.getText()),
-					Integer.parseInt(maxInput.getText()),
-					machineIDInput.getText());
-		} else{
-			Random rand = new Random();
-			int id = rand.nextInt(50);
-			new Inhouse(id, 
-					nameInput.getText(), 
-					Double.parseDouble(priceInput.getText()),
-					Integer.parseInt(inventoryInput.getText()), 
-					Integer.parseInt(minInput.getText()),
-					Integer.parseInt(maxInput.getText()),
-					Integer.parseInt(machineIDInput.getText()));
+	public void savePart(ActionEvent event) throws IOException {
+		int index = Main.inventory.getAllParts().indexOf(previousPart);
+		if(index >= -1) {
+			if(machineIDLabel.getText() == "Company Name") {
+				Main.inventory.updatePart(index,
+				new Outsourced(previousPart.getPartID(), 
+						nameInput.getText(), 
+						Double.parseDouble(priceInput.getText()),
+						Integer.parseInt(inventoryInput.getText()), 
+						Integer.parseInt(minInput.getText()),
+						Integer.parseInt(maxInput.getText()),
+						machineIDInput.getText()));
+			} else {
+				Main.inventory.updatePart(index,
+				new Inhouse(previousPart.getPartID(), 
+						nameInput.getText(), 
+						Double.parseDouble(priceInput.getText()),
+						Integer.parseInt(inventoryInput.getText()), 
+						Integer.parseInt(minInput.getText()),
+						Integer.parseInt(maxInput.getText()),
+						Integer.parseInt(machineIDInput.getText())));
+			}
 		}
+		cancelClicked(event);
 	}
 	
 	public void outsourceClicked() {
 		machineIDLabel.setText("Company Name");
-		
 	}
 
 	public void inhouseClicked() {
