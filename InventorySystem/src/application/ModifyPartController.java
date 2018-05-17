@@ -11,42 +11,46 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AddPartController {
+public class ModifyPartController {
 	@FXML private Button saveButton, cancelButton;
 	@FXML private TextField idInput, nameInput, inventoryInput, priceInput, maxInput,
 	minInput, machineIDInput;
 	@FXML private Label machineIDLabel;
+	@FXML private RadioButton outsourcedRadioButton, inhouseRadioButton;
 	
-	public void savePart(ActionEvent event) throws IOException {
+	private Part previousPart;
+	
+	public void savePart() {
 		if(machineIDLabel.getText() == "Company Name") {
 			Random rand = new Random();
 			int id = rand.nextInt(50);
-			Main.inventory.addPart(new Outsourced(id, 
+			new Outsourced(id, 
 					nameInput.getText(), 
 					Double.parseDouble(priceInput.getText()),
 					Integer.parseInt(inventoryInput.getText()), 
 					Integer.parseInt(minInput.getText()),
 					Integer.parseInt(maxInput.getText()),
-					machineIDInput.getText()));
-		} else {
+					machineIDInput.getText());
+		} else{
 			Random rand = new Random();
 			int id = rand.nextInt(50);
-			Main.inventory.addPart(new Inhouse(id, 
+			new Inhouse(id, 
 					nameInput.getText(), 
 					Double.parseDouble(priceInput.getText()),
 					Integer.parseInt(inventoryInput.getText()), 
 					Integer.parseInt(minInput.getText()),
 					Integer.parseInt(maxInput.getText()),
-					Integer.parseInt(machineIDInput.getText())));
+					Integer.parseInt(machineIDInput.getText()));
 		}
-		cancelClicked(event);
 	}
 	
 	public void outsourceClicked() {
 		machineIDLabel.setText("Company Name");
+		
 	}
 
 	public void inhouseClicked() {
@@ -58,5 +62,24 @@ public class AddPartController {
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(tableViewScene);
 		window.show();
+	}
+	public void initData(Part part) {
+		previousPart = part;
+		idInput.setText(Integer.toString(part.getPartID()));
+		nameInput.setText(part.getName());
+		inventoryInput.setText(Integer.toString(part.getInStock()));
+		priceInput.setText(Double.toString(part.getPrice()));
+		maxInput.setText(Integer.toString(part.getMax()));
+		minInput.setText(Integer.toString(part.getMin()));
+		if(part instanceof Inhouse) {
+			inhouseRadioButton.setSelected(true);
+			machineIDLabel.setText("Machine ID");
+			machineIDInput.setText(Integer.toString(((Inhouse) part).getMachineID()));
+		}
+		if(part instanceof Outsourced){
+			outsourcedRadioButton.setSelected(true);
+			machineIDLabel.setText("Company Name");
+			machineIDInput.setText(((Outsourced) part).getCompanyName());
+		}
 	}
 }

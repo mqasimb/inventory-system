@@ -1,7 +1,5 @@
 package application;
 
-import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -20,6 +18,9 @@ public class Inventory {
 	}
 	public boolean removeProduct(int index) {
 		return Products.remove(index) != null;
+	}
+	public boolean removeProduct(Product product) {
+		return Products.remove(product);
 	}
 	public Product lookupProduct(int index) {
 		return Products.get(index);

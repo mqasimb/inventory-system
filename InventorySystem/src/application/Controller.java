@@ -30,8 +30,6 @@ public class Controller {
 	@FXML private TableColumn<Product, String> productNameColumn;
 	@FXML private TableColumn<Product, Integer> productInventoryColumn;
 	@FXML private TableColumn<Product, Double> productCostColumn;
-	
-	private Inventory inventory = new Inventory();
 
 	public void addPart(ActionEvent event) throws IOException {
 		Parent tableViewParent = FXMLLoader.load(getClass().getResource("addPart.fxml"));
@@ -41,14 +39,23 @@ public class Controller {
 		window.show();
 	}
 	
-	public void modifyPart() {
+	public void modifyPart(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("modifyPart.fxml"));
+		Parent tableViewParent = loader.load();
+		Scene tableViewScene = new Scene(tableViewParent);
 		
+		ModifyPartController controller  = loader.getController();
+		controller.initData(partsTableView.getSelectionModel().getSelectedItem())
+		;
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		window.setScene(tableViewScene);
+		window.show();
 	}
 
 	public void deletePart() {
 		Part selectedPart = partsTableView.getSelectionModel().getSelectedItem();
-		System.out.println(selectedPart);
-		inventory.deletePart(selectedPart);
+		Main.inventory.deletePart(selectedPart);
 		
 	}
 	public void searchPart() {
@@ -56,7 +63,6 @@ public class Controller {
 	}
 	
 	public void addProduct() {
-		
 	}
 	
 	public void modifyProduct() {
@@ -65,7 +71,9 @@ public class Controller {
 	}
 
 	public void deleteProduct() {
-
+		Product selectedProduct = productsTableView.getSelectionModel().getSelectedItem();
+		System.out.println(selectedProduct);
+		Main.inventory.removeProduct(selectedProduct);
 	}
 	public void searchProduct() {
 
@@ -75,8 +83,6 @@ public class Controller {
 		partNameColumn.setCellValueFactory(new PropertyValueFactory<Part, String>("name"));
 		partInventoryColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("inStock"));
 		partCostColumn.setCellValueFactory(new PropertyValueFactory<Part, Double>("price"));
-//		System.out.println(inventory);
-		inventory.addPart(new Outsourced(123, "sample", 10.00, 5, 0, 3, "Empire"));
-		partsTableView.setItems(inventory.getAllParts());
+		partsTableView.setItems(Main.inventory.getAllParts());
 	}
 }

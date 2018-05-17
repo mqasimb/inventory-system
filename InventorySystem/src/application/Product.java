@@ -1,10 +1,11 @@
 package application;
 
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Product {
 	
-	private ArrayList<Part> associatedParts;
+	private ObservableList<Part> associatedParts;
 	private int productID;
 	private String name;
 	private double price;
@@ -13,7 +14,7 @@ public class Product {
 	private int max;
 	
 	public Product(int productID, String name, double price, int inStock, int min, int max) {
-		this.associatedParts = new ArrayList<Part>();
+		this.associatedParts = FXCollections.observableArrayList();
 		this.productID = productID;
 		this.name = name;
 		this.price = price;
