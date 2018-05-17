@@ -82,7 +82,12 @@ public class Controller {
 		partsTableView.setItems(Main.inventory.getAllParts());
 	}
 	
-	public void addProduct() {
+	public void addProduct(ActionEvent event) throws IOException {
+		Parent tableViewParent = FXMLLoader.load(getClass().getResource("addProduct.fxml"));
+		Scene tableViewScene = new Scene(tableViewParent);
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		window.setScene(tableViewScene);
+		window.show();
 	}
 	
 	public void modifyProduct() {
@@ -103,7 +108,6 @@ public class Controller {
 		partInventoryColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("inStock"));
 		partCostColumn.setCellValueFactory(new PropertyValueFactory<Part, Double>("price"));
 		partsTableView.setItems(Main.inventory.getAllParts());
-		
 		
 		productIDColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("productID"));
 		productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));

@@ -1,6 +1,5 @@
 package application;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Product {
@@ -13,8 +12,8 @@ public class Product {
 	private int min;
 	private int max;
 	
-	public Product(int productID, String name, double price, int inStock, int min, int max) {
-		this.associatedParts = FXCollections.observableArrayList();
+	public Product(ObservableList<Part> associatedParts, int productID, String name, double price, int inStock, int min, int max) {
+		this.associatedParts = associatedParts;
 		this.productID = productID;
 		this.name = name;
 		this.price = price;
