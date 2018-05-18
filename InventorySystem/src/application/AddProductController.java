@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -22,6 +23,8 @@ public class AddProductController {
 	@FXML private Button saveButton, cancelButton, deleteButton, addButton, searchButton, cancelSearchPartButton;
 	@FXML private TextField idInput, nameInput, inventoryInput, priceInput, maxInput,
 	minInput,searchPartInput;
+	@FXML private Label minimumPartValidationLabel,nameValidationLabel, priceValidationLabel;
+	
 	@FXML private TableView<Part> partsTableView;
 	@FXML private TableColumn<Part, Integer> partIDColumn;
 	@FXML private TableColumn<Part, String> partNameColumn;
@@ -37,18 +40,41 @@ public class AddProductController {
 	private ObservableList<Part> partsList = FXCollections.observableArrayList();
 	
 	public void saveProduct(ActionEvent event) throws IOException {
-		Random rand = new Random();
-		int id = rand.nextInt(50);
+		boolean partValidation = true, nameValidation = true, priceValidation = true;
 		
-		Main.inventory.addProduct(new Product(partsList,
-				id,
-				nameInput.getText(),
-				Double.parseDouble(priceInput.getText()),
-				Integer.parseInt(inventoryInput.getText()),
-				Integer.parseInt(minInput.getText()),
-				Integer.parseInt(maxInput.getText())));
+		nameValidationLabel.setVisible(false);
+		priceValidationLabel.setVisible(false);
 		
-		cancelClicked(event);
+		if(nameInput.getText()==null || nameInput.getText().trim().isEmpty()== true) {
+			nameValidation = false;
+			nameValidationLabel.setVisible(true);
+		}
+		if(priceInput.getText()==null || priceInput.getText().trim().isEmpty()== true) {
+			priceValidation = false;
+			priceValidationLabel.setVisible(true);
+		}
+		if(inventoryInput.getText()==null || inventoryInput.getText().trim().isEmpty()== true) {
+			inventoryInput.setText("0");
+		}
+		
+		if(partsList.size() < 1) {
+			minimumPartValidationLabel.setVisible(true);
+			partValidation = false;
+		}
+		if(partValidation && nameValidation && priceValidation) {
+			Random rand = new Random();
+			int id = rand.nextInt(50);
+			
+			Main.inventory.addProduct(new Product(partsList,
+					id,
+					nameInput.getText(),
+					Double.parseDouble(priceInput.getText()),
+					Integer.parseInt(inventoryInput.getText()),
+					Integer.parseInt(minInput.getText()),
+					Integer.parseInt(maxInput.getText())));
+			
+			cancelClicked(event);
+		}
 	}
 	
 	public void deletePart() {

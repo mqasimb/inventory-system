@@ -1,8 +1,6 @@
 package application;
 
 import java.io.IOException;
-import java.util.Random;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -22,6 +21,7 @@ public class ModifyProductController {
 	@FXML private Button saveButton, cancelButton, deleteButton, addButton, searchButton, cancelSearchPartButton;
 	@FXML private TextField idInput, nameInput, inventoryInput, priceInput, maxInput,
 	minInput,searchPartInput;
+	@FXML private Label minimumPartValidationLabel,nameValidationLabel, priceValidationLabel;
 	@FXML private TableView<Part> partsTableView;
 	@FXML private TableColumn<Part, Integer> partIDColumn;
 	@FXML private TableColumn<Part, String> partNameColumn;
@@ -34,28 +34,52 @@ public class ModifyProductController {
 	@FXML private TableColumn<Part, Integer> productPartInventoryColumn;
 	@FXML private TableColumn<Part, Double> productPartCostColumn;
 	
-	private ObservableList<Part> partsList = FXCollections.observableArrayList();
-	
 	private Product previousProduct;
+	private ObservableList<Part> partsList;
 	
 	public void saveProduct(ActionEvent event) throws IOException {
-		previousProduct.setName(nameInput.getText());
-		previousProduct.setPrice(Double.parseDouble(priceInput.getText()));
-		previousProduct.setInStock(Integer.parseInt(inventoryInput.getText()));
-		previousProduct.setMin(Integer.parseInt(minInput.getText()));
-		previousProduct.setMax(Integer.parseInt(maxInput.getText()));
+		boolean partValidation = true, nameValidation = true, priceValidation = true;
 		
-		cancelClicked(event);
+		nameValidationLabel.setVisible(false);
+		priceValidationLabel.setVisible(false);
+		
+		if(nameInput.getText()==null || nameInput.getText().trim().isEmpty()== true) {
+			nameValidation = false;
+			nameValidationLabel.setVisible(true);
+		}
+		if(priceInput.getText()==null || priceInput.getText().trim().isEmpty()== true) {
+			priceValidation = false;
+			priceValidationLabel.setVisible(true);
+		}
+		if(inventoryInput.getText()==null || inventoryInput.getText().trim().isEmpty()== true) {
+			inventoryInput.setText("0");
+		}
+		
+		if(partsList.size() < 1) {
+			minimumPartValidationLabel.setVisible(true);
+			partValidation = false;
+		}
+		
+		if(partValidation && nameValidation && priceValidation) {
+			previousProduct.saveList(partsList);
+			previousProduct.setName(nameInput.getText());
+			previousProduct.setPrice(Double.parseDouble(priceInput.getText()));
+			previousProduct.setInStock(Integer.parseInt(inventoryInput.getText()));
+			previousProduct.setMin(Integer.parseInt(minInput.getText()));
+			previousProduct.setMax(Integer.parseInt(maxInput.getText()));
+			
+			cancelClicked(event);
+		}
 	}
 	
 	public void deletePart() {
 		Part selectedPart = productPartTableView.getSelectionModel().getSelectedItem();
-		previousProduct.removeAssociatedPart(selectedPart);
+		partsList.remove(selectedPart);
 	}
 	public void addPart() {
 		Part selectedPart = partsTableView.getSelectionModel().getSelectedItem();
-		if(selectedPart != null && previousProduct.lookupAssociatedPart(selectedPart) < 0) {
-			previousProduct.addAssociatedPart(selectedPart);
+		if(selectedPart != null && partsList.indexOf(selectedPart) < 0) {
+			partsList.add(selectedPart);
 		}
 	}
 	public void searchPart() {
@@ -99,7 +123,8 @@ public class ModifyProductController {
 	}
 	public void initData(Product product) {
 		previousProduct = product;
-		productPartTableView.setItems(product.getParts());
+		partsList = product.getPartsCopy();
+		productPartTableView.setItems(partsList);
 		idInput.setText(Integer.toString(product.getProductID()));
 		nameInput.setText(product.getName());
 		inventoryInput.setText(Integer.toString(product.getInStock()));

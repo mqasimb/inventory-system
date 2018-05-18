@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 
 public class Controller {
 	@FXML private Button searchPartButton, addPartButton, modifyPartButton, deletePartButton,
-	searchProductButton, addProductButton, modifyProductButton, deleteProductButton, cancelSearchPartButton;
+	searchProductButton, addProductButton, modifyProductButton, deleteProductButton, cancelSearchPartButton, cancelSearchProductButton;
 	@FXML private TextField searchPartInput, searchProductInput;
 	@FXML private TableView<Part> partsTableView;
 	@FXML private TableColumn<Part, Integer> partIDColumn;
@@ -62,8 +62,6 @@ public class Controller {
 		
 	}
 	public void searchPart() {
-		//Open a new screen
-		//Add a cancel search button
 		String searchString = searchPartInput.getText();
 		ObservableList<Part> filteredList = FXCollections.observableArrayList();
 		for(int i=0; i<Main.inventory.getAllParts().size(); i++) {
@@ -110,7 +108,26 @@ public class Controller {
 		Main.inventory.removeProduct(selectedProduct);
 	}
 	public void searchProduct() {
-
+		String searchString = searchProductInput.getText();
+		ObservableList<Product> filteredList = FXCollections.observableArrayList();
+		for(int i=0; i<Main.inventory.getAllProducts().size(); i++) {
+			if(searchString.toLowerCase().equals(Main.inventory.lookupProduct(i).getName().toLowerCase())) {
+				filteredList.add(Main.inventory.lookupProduct(i));
+			}
+		}
+		productsTableView.setItems(filteredList);
+		cancelSearchProductButton.setVisible(true);
+		cancelSearchProductButton.setDisable(false);
+	}
+	public void cancelProductSearch() {
+		searchProductInput.clear();
+		cancelSearchProductButton.setDisable(true);
+		cancelSearchProductButton.setVisible(false);
+		productsTableView.setItems(Main.inventory.getAllProducts());
+	}
+	public void exitApplication(ActionEvent event) {
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		window.close();
 	}
 	public void initialize() {
 		partIDColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("partID"));

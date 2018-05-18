@@ -39,7 +39,7 @@
       <Button fx:id="addPartButton" layoutX="233.0" layoutY="355.0" mnemonicParsing="false" onAction="#addPart" text="Add" />
       <Button fx:id="searchPartButton" layoutX="191.0" layoutY="90.0" mnemonicParsing="false" onAction="#searchPart" text="Search" />
       <Button fx:id="cancelSearchPartButton" disable="true" layoutX="133.0" layoutY="90.0" mnemonicParsing="false" onAction="#cancelPartSearch" text="Cancel" visible="false" />
-      <Button fx:id="cancelSearchProductButton" disable="true" layoutX="563.0" layoutY="90.0" mnemonicParsing="false" text="Cancel" />
-      <Button fx:id="exitButton" layoutX="746.0" layoutY="410.0" mnemonicParsing="false" text="Exit" />
+      <Button fx:id="cancelSearchProductButton" disable="true" layoutX="563.0" layoutY="90.0" mnemonicParsing="false" onAction="#cancelProductSearch" text="Cancel" visible="false" />
+      <Button fx:id="exitButton" layoutX="746.0" layoutY="410.0" mnemonicParsing="false" onAction="#exitApplication" text="Exit" />
    </children>
 </Pane>

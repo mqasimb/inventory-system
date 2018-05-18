@@ -1,5 +1,6 @@
 package application;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Product {
@@ -63,6 +64,16 @@ public class Product {
 	}
 	public ObservableList<Part> getParts() {
 		return this.associatedParts;
+	}
+	public ObservableList<Part> getPartsCopy() {
+		ObservableList<Part> copyList = FXCollections.observableArrayList();
+		for(int i=0; i<this.associatedParts.size(); i++) {
+			copyList.add(this.associatedParts.get(i));
+		}
+		return copyList;
+	}
+	public void saveList(ObservableList<Part> list) {
+		this.associatedParts = list;
 	}
 	public Part lookupAssociatedPart(int index) {
 		return this.associatedParts.get(index);
