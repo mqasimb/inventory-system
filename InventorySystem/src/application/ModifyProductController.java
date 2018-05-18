@@ -54,7 +54,7 @@ public class ModifyProductController {
 	}
 	public void addPart() {
 		Part selectedPart = partsTableView.getSelectionModel().getSelectedItem();
-		if(selectedPart != null) {
+		if(selectedPart != null && previousProduct.lookupAssociatedPart(selectedPart) < 0) {
 			previousProduct.addAssociatedPart(selectedPart);
 		}
 	}

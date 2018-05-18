@@ -67,6 +67,9 @@ public class Product {
 	public Part lookupAssociatedPart(int index) {
 		return this.associatedParts.get(index);
 	}
+	public int lookupAssociatedPart(Part part) {
+		return this.associatedParts.indexOf(part);
+	}
 	public void setProductID(int productID) {
 		this.productID = productID;
 	}

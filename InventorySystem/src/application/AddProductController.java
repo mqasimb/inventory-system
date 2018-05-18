@@ -60,7 +60,7 @@ public class AddProductController {
 	}
 	public void addPart() {
 		Part selectedPart = partsTableView.getSelectionModel().getSelectedItem();
-		if(selectedPart != null) {
+		if(selectedPart != null && partsList.indexOf(selectedPart) < 0) {
 			partsList.add(selectedPart);
 		}
 	}
