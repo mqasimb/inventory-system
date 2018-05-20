@@ -1,4 +1,4 @@
-package application;
+package application.Model;
 
 public class Inhouse extends Part {
 	

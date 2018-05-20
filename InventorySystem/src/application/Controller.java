@@ -2,6 +2,8 @@ package application;
 
 import java.io.IOException;
 
+import application.Model.Part;
+import application.Model.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,10 +36,10 @@ public class Controller {
 	@FXML private TableColumn<Product, Double> productCostColumn;
 
 	public void addPart(ActionEvent event) throws IOException {
-		Parent tableViewParent = FXMLLoader.load(getClass().getResource("addPart.fxml"));
-		Scene tableViewScene = new Scene(tableViewParent);
+		Parent addPart = FXMLLoader.load(getClass().getResource("addPart.fxml"));
+		Scene addPartScene = new Scene(addPart);
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		window.setScene(tableViewScene);
+		window.setScene(addPartScene);
 		window.show();
 	}
 	
@@ -45,13 +47,13 @@ public class Controller {
 		if(partsTableView.getSelectionModel().getSelectedItem() != null) {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("modifyPart.fxml"));
-			Parent tableViewParent = loader.load();
-			Scene tableViewScene = new Scene(tableViewParent);
+			Parent modifyPart = loader.load();
+			Scene modifyPartScene = new Scene(modifyPart);
 			
 			ModifyPartController controller  = loader.getController();
 			controller.initData(partsTableView.getSelectionModel().getSelectedItem());
 			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-			window.setScene(tableViewScene);
+			window.setScene(modifyPartScene);
 			window.show();
 		}
 	}
@@ -81,10 +83,10 @@ public class Controller {
 	}
 	
 	public void addProduct(ActionEvent event) throws IOException {
-		Parent tableViewParent = FXMLLoader.load(getClass().getResource("addProduct.fxml"));
-		Scene tableViewScene = new Scene(tableViewParent);
+		Parent addProduct = FXMLLoader.load(getClass().getResource("addProduct.fxml"));
+		Scene addProductScene = new Scene(addProduct);
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		window.setScene(tableViewScene);
+		window.setScene(addProductScene);
 		window.show();
 	}
 	
@@ -92,13 +94,13 @@ public class Controller {
 		if(productsTableView.getSelectionModel().getSelectedItem() != null) {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("modifyProduct.fxml"));
-			Parent tableViewParent = loader.load();
-			Scene tableViewScene = new Scene(tableViewParent);
+			Parent modifyProduct = loader.load();
+			Scene modifyProductScene = new Scene(modifyProduct);
 			
 			ModifyProductController controller  = loader.getController();
 			controller.initData(productsTableView.getSelectionModel().getSelectedItem());
 			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-			window.setScene(tableViewScene);
+			window.setScene(modifyProductScene);
 			window.show();
 		}
 	}

@@ -1,6 +1,10 @@
 package application;
 
 import java.io.IOException;
+
+import application.Model.Inhouse;
+import application.Model.Outsourced;
+import application.Model.Part;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,10 +60,10 @@ public class ModifyPartController {
 		machineIDLabel.setText("Machine ID");
 	}
 	public void cancelClicked(ActionEvent event) throws IOException {
-		Parent tableViewParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
-		Scene tableViewScene = new Scene(tableViewParent);
+		Parent mainView = FXMLLoader.load(getClass().getResource("Main.fxml"));
+		Scene mainViewScene = new Scene(mainView);
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		window.setScene(tableViewScene);
+		window.setScene(mainViewScene);
 		window.show();
 	}
 	public void initData(Part part) {

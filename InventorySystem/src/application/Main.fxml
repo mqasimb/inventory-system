@@ -5,14 +5,23 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="903.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
       <Region layoutX="458.0" layoutY="71.0" prefHeight="328.0" prefWidth="410.0" style="-fx-border-color: black;" />
       <Region layoutX="28.0" layoutY="71.0" prefHeight="328.0" prefWidth="410.0" style="-fx-border-color: black;" />
-      <Button fx:id="modifyProductButton" layoutX="562.0" layoutY="356.0" mnemonicParsing="false" onAction="#modifyProduct" text="Modify" />
-      <Text layoutX="68.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory Management System" />
-      <Text layoutX="489.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Products" />
-      <Text layoutX="66.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parts" />
+      <Button fx:id="modifyProductButton" layoutX="699.0" layoutY="356.0" mnemonicParsing="false" onAction="#modifyProduct" text="Modify" />
+      <Text layoutX="68.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory Management System">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text layoutX="477.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Products">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+      <Text layoutX="47.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parts">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
       <TableView fx:id="productsTableView" layoutX="477.0" layoutY="130.0" prefHeight="200.0" prefWidth="372.0">
          <columns>
             <TableColumn fx:id="productIDColumn" prefWidth="75.0" text="Product ID" />
@@ -30,16 +39,16 @@
          </columns>
       </TableView>
       <TextField fx:id="searchProductInput" layoutX="699.0" layoutY="90.0" />
-      <TextField fx:id="searchPartInput" layoutX="260.0" layoutY="90.0" />
-      <Button fx:id="addProductButton" layoutX="500.0" layoutY="356.0" mnemonicParsing="false" onAction="#addProduct" text="Add" />
-      <Button fx:id="deleteProductButton" layoutX="637.0" layoutY="356.0" mnemonicParsing="false" onAction="#deleteProduct" text="Delete" />
+      <TextField fx:id="searchPartInput" layoutX="271.0" layoutY="90.0" />
+      <Button fx:id="addProductButton" layoutX="644.0" layoutY="356.0" mnemonicParsing="false" onAction="#addProduct" text="Add" />
+      <Button fx:id="deleteProductButton" layoutX="798.0" layoutY="356.0" mnemonicParsing="false" onAction="#deleteProduct" text="Delete" />
       <Button fx:id="searchProductButton" layoutX="628.0" layoutY="90.0" mnemonicParsing="false" onAction="#searchProduct" text="Search" />
-      <Button fx:id="deletePartButton" layoutX="360.0" layoutY="355.0" mnemonicParsing="false" onAction="#deletePart" text="Delete" />
-      <Button fx:id="modifyPartButton" layoutX="281.0" layoutY="355.0" mnemonicParsing="false" onAction="#modifyPart" text="Modify" />
-      <Button fx:id="addPartButton" layoutX="233.0" layoutY="355.0" mnemonicParsing="false" onAction="#addPart" text="Add" />
-      <Button fx:id="searchPartButton" layoutX="191.0" layoutY="90.0" mnemonicParsing="false" onAction="#searchPart" text="Search" />
+      <Button fx:id="deletePartButton" layoutX="368.0" layoutY="355.0" mnemonicParsing="false" onAction="#deletePart" text="Delete" />
+      <Button fx:id="modifyPartButton" layoutX="271.0" layoutY="355.0" mnemonicParsing="false" onAction="#modifyPart" text="Modify" />
+      <Button fx:id="addPartButton" layoutX="214.0" layoutY="355.0" mnemonicParsing="false" onAction="#addPart" text="Add" />
+      <Button fx:id="searchPartButton" layoutX="200.0" layoutY="90.0" mnemonicParsing="false" onAction="#searchPart" text="Search" />
       <Button fx:id="cancelSearchPartButton" disable="true" layoutX="133.0" layoutY="90.0" mnemonicParsing="false" onAction="#cancelPartSearch" text="Cancel" visible="false" />
       <Button fx:id="cancelSearchProductButton" disable="true" layoutX="563.0" layoutY="90.0" mnemonicParsing="false" onAction="#cancelProductSearch" text="Cancel" visible="false" />
-      <Button fx:id="exitButton" layoutX="746.0" layoutY="410.0" mnemonicParsing="false" onAction="#exitApplication" text="Exit" />
+      <Button fx:id="exitButton" layoutX="746.0" layoutY="413.0" mnemonicParsing="false" onAction="#exitApplication" text="Exit" />
    </children>
 </Pane>

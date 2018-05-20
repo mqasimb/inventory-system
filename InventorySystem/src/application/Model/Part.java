@@ -1,4 +1,4 @@
-package application;
+package application.Model;
 
 public abstract class Part {
 	private int partID;

@@ -3,6 +3,8 @@ package application;
 import java.io.IOException;
 import java.util.Random;
 
+import application.Model.Part;
+import application.Model.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,6 +46,7 @@ public class AddProductController {
 		
 		nameValidationLabel.setVisible(false);
 		priceValidationLabel.setVisible(false);
+		minimumPartValidationLabel.setVisible(false);
 		
 		if(nameInput.getText()==null || nameInput.getText().trim().isEmpty()== true) {
 			nameValidation = false;
@@ -111,10 +114,10 @@ public class AddProductController {
 	}
 	
 	public void cancelClicked(ActionEvent event) throws IOException {
-		Parent tableViewParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
-		Scene tableViewScene = new Scene(tableViewParent);
+		Parent mainView = FXMLLoader.load(getClass().getResource("Main.fxml"));
+		Scene mainViewScene = new Scene(mainView);
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		window.setScene(tableViewScene);
+		window.setScene(mainViewScene);
 		window.show();
 	}
 	public void initialize() {
